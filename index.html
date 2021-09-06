@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP CheetSheet</title>
+    <link rel="stylesheet" href="prism.css">
+    <script src="prism.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <img class="logo" src="logo1.png" alt="">
+        <p class="ptext">PHP CheetSheet for me!</p>
+    </nav>
+    <div class="container">
+        <ol>
+            <li>
+                <h3> PHP Post Request.</h3>
+                <pre class="language-php line-numbers">
+<code>&lt!doctype html&gt
+    &lthtml lang="en"&gt
+      &lthead&gt
+        &lt!-- Required meta tags --&gt
+        &ltmeta charset="utf-8"&gt
+        &ltmeta name="viewport" content="width=device-width, initial-scale=1"&gt
+    
+        &lt!-- Bootstrap CSS --&gt
+        &ltlink href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"&gt
+    
+        &lttitle&gtGet And Post&lt/title&gt
+      &lt/head&gt
+      &ltbody&gt
+      &ltnav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt
+      &ltdiv class="container-fluid"&gt
+        &lta class="navbar-brand" href="#"&gtGet/Post&lt/a&gt
+        &ltbutton class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"&gt
+          &ltspan class="navbar-toggler-icon"&gt&lt/span&gt
+        &lt/button&gt
+        &ltdiv class="collapse navbar-collapse" id="navbarSupportedContent"&gt
+          &ltul class="navbar-nav me-auto mb-2 mb-lg-0"&gt
+            &ltli class="nav-item"&gt
+              &lta class="nav-link active" aria-current="page" href="#"&gtHome&lt/a&gt
+            &lt/li&gt
+            &ltli class="nav-item"&gt
+              &lta class="nav-link" href="#"&gtLink&lt/a&gt
+            &lt/li&gt
+            &ltli class="nav-item dropdown"&gt
+              &lta class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"&gt
+                Dropdown
+              &lt/a&gt
+              &ltul class="dropdown-menu" aria-labelledby="navbarDropdown"&gt
+                &ltli&gt&lta class="dropdown-item" href="#"&gtAction&lt/a&gt&lt/li&gt
+                &ltli&gt&lta class="dropdown-item" href="#"&gtAnother action&lt/a&gt&lt/li&gt
+                &ltli&gt&lthr class="dropdown-divider"&gt&lt/li&gt
+                &ltli&gt&lta class="dropdown-item" href="#"&gtSomething else here&lt/a&gt&lt/li&gt
+              &lt/ul&gt
+            &lt/li&gt
+            &ltli class="nav-item"&gt
+              &lta class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"&gtDisabled&lt/a&gt
+            &lt/li&gt
+          &lt/ul&gt
+          &ltform class="d-flex"&gt
+            &ltinput class="form-control me-2" type="search" placeholder="Search" aria-label="Search"&gt
+            &ltbutton class="btn btn-outline-success" type="submit"&gtSearch&lt/button&gt
+          &lt/form&gt
+        &lt/div&gt
+      &lt/div&gt
+    &lt/nav&gt
+    
+    &lt?php
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $email = $_POST['email'];
+        $password = $_POST['pass'];
+        echo '&ltdiv class="alert alert-sucsess alert-dismissible fade show" role="alert"&gt
+        &ltstrong&gtSuccess!&lt/strong&gt Your Email:'. $email.' and password:'. $password.' has been Submit successfully.
+        &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt&lt/button&gt
+      &lt/div&gt';
+    }
+    
+    ?&gt
+    
+    &ltdiv class="container mt-5"&gt
+    &ltform action="/kartikphp/21_Get_Post.php" method="post"&gt
+      &ltdiv class="mb-3"&gt
+        &ltlabel for="exampleInputEmail1"  class="form-label"&gtEmail address&lt/label&gt
+        &ltinput type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"&gt
+        &ltdiv id="emailHelp" class="form-text"&gtWe'll never share your email with anyone else.&lt/div&gt
+      &lt/div&gt
+      &ltdiv class="mb-3"&gt
+        &ltlabel for="exampleInputPassword1" class="form-label"&gtPassword&lt/label&gt
+        &ltinput type="password" name="pass" class="form-control" id="exampleInputPassword1"&gt
+      &lt/div&gt
+     
+      &ltbutton type="submit" class="btn btn-primary"&gtSubmit&lt/button&gt
+    &lt/form&gt
+    &lt/div&gt
+    
+        &lt!-- Optional JavaScript; choose one of the two! --&gt
+    
+        &lt!-- Option 1: Bootstrap Bundle with Popper --&gt
+        &ltscript src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"&gt&lt/script&gt
+    
+        &lt!-- Option 2: Separate Popper and Bootstrap JS --&gt
+        &lt!--
+        &ltscript src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"&gt&lt/script&gt
+        &ltscript src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"&gt&lt/script&gt
+        --&gt
+      &lt/body&gt
+    &lt/html&gt</code></pre>
+
+
+            </li>
+            <li>
+                <h3>MySqli Connection.</h3>
+                <pre>
+<code class="language-php line-numbers">&lt?php
+    echo "Welcome to the stage where we are ready to get connected to a database &ltbr&lt";
+    /* 
+    Ways to connect to a MySQL Database
+    1. MySQLi extension
+    2. PDO
+    */
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password);
+    
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{
+        echo "Connection was successful";
+    }    
+?&gt </code></pre>
+            </li>
+
+            <li>
+                <h3> Creating Sql Database.</h3>
+                <pre class="language-php line-numbers">
+<code>&lt?php
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password);
+    
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{
+        echo "Connection was successful&ltbr&gt";
+    }
+    
+    // Create a db
+    $sql = "CREATE DATABASE contactdb";
+    $result = mysqli_query($conn, $sql);
+    
+    // Check for the database creation success
+    if($result){
+        echo "The db was created successfully!&ltbr&gt";
+    }
+    else{
+        echo "The db was not created successfully because of this error ---&gt ". mysqli_error($conn);
+    }
+?&gt    
+</code></pre>
+            </li>
+
+
+            <li>
+                <h3> create Table.</h3>
+                <pre class="language-php line-numbers">
+<code>&lt?php
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kartikdb";
+    
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{
+        echo "Connection was successful&ltbr&gt";
+    }       
+    $sql = "CREATE TABLE `phptable` ( `sno` INT(11) NOT NULL AUTO_INCREMENT ,  `Name` VARCHAR(11) NOT NULL ,  `gender` VARCHAR(11) NOT NULL ,    PRIMARY KEY  (`sno`)) ";
+    
+    $result = mysqli_query($conn, $sql);
+    
+    // Check for the database creation success
+    if($result){
+        echo "The Table was created successfully!&ltbr&gt";
+    }
+    else{
+        echo "The Table was not created successfully because of this error ---&gt ". mysqli_error($conn);
+    }
+?&gt
+    
+</code></pre>
+            </li>
+
+
+            <li>
+                <h3> Insert Data.</h3>
+                <pre class="language-php line-numbers">
+<code>&lt?php
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kartikdb";
+    
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{
+        echo "Connection was successful&ltbr&gt";
+    }
+    
+    $name = "Sandip";
+    $gender = "male";
+    
+    $sql = "INSERT INTO `phptable` (`Name`, `gender`) VALUES ('$name', '$gender')";
+    $result = mysqli_query($conn, $sql);
+    
+    // Add a new table to the database
+    if($result){
+        echo "The Table data was Submited successfully!&ltbr&gt";
+    }
+    else{
+        echo "The Table data was not Submited because of this error ---&gt ". mysqli_error($conn);
+    }
+?&gt</code>
+</pre>
+            </li>
+
+
+            <li>
+                <h3> Form Data Insert .</h3>
+                <pre class="language-html  line-numbers">
+<code>&lt!doctype html&gt
+    &lthtml lang="en"&gt
+      &lthead&gt
+        &lt!-- Required meta tags --&gt
+        &ltmeta charset="utf-8"&gt
+        &ltmeta name="viewport" content="width=device-width, initial-scale=1"&gt
+    
+        &lt!-- Bootstrap CSS --&gt
+        &ltlink href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"&gt
+    
+        &lttitle&gtContact Us&lt/title&gt
+      &lt/head&gt
+      &ltbody&gt
+      &ltnav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt
+      &ltdiv class="container-fluid"&gt
+        &lta class="navbar-brand" href="#"&gtContact&lt/a&gt
+        &ltbutton class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"&gt
+          &ltspan class="navbar-toggler-icon"&gt&lt/span&gt
+        &lt/button&gt
+        &ltdiv class="collapse navbar-collapse" id="navbarSupportedContent"&gt
+          &ltul class="navbar-nav me-auto mb-2 mb-lg-0"&gt
+            &ltli class="nav-item"&gt
+              &lta class="nav-link active" aria-current="page" href="#"&gtHome&lt/a&gt
+            &lt/li&gt
+            &ltli class="nav-item"&gt
+              &lta class="nav-link" href="#"&gtLink&lt/a&gt
+            &lt/li&gt
+            &ltli class="nav-item dropdown"&gt
+              &lta class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"&gt
+                Dropdown
+              &lt/a&gt
+              &ltul class="dropdown-menu" aria-labelledby="navbarDropdown"&gt
+                &ltli&gt&lta class="dropdown-item" href="#"&gtAction&lt/a&gt&lt/li&gt
+                &ltli&gt&lta class="dropdown-item" href="#"&gtAnother action&lt/a&gt&lt/li&gt
+                &ltli&gt&lthr class="dropdown-divider"&gt&lt/li&gt
+                &ltli&gt&lta class="dropdown-item" href="#"&gtSomething else here&lt/a&gt&lt/li&gt
+              &lt/ul&gt
+            &lt/li&gt
+            &ltli class="nav-item"&gt
+              &lta class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"&gtDisabled&lt/a&gt
+            &lt/li&gt
+          &lt/ul&gt
+          &ltform class="d-flex"&gt
+            &ltinput class="form-control me-2" type="search" placeholder="Search" aria-label="Search"&gt
+            &ltbutton class="btn btn-outline-success" type="submit"&gtSearch&lt/button&gt
+          &lt/form&gt
+        &lt/div&gt
+      &lt/div&gt
+    &lt/nav&gt
+    
+    &lt?php
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $conc = $_POST['conc'];
+       
+      // Connecting to the Database
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "contactdb";
+    
+        // Create a connection
+        $conn = mysqli_connect($servername, $username, $password, $database);
+    
+        // Die if connection was not successful
+        if (!$conn){
+            die('&ltdiv class="alert alert-success alert-dismissible fade show" role="alert"&gt
+            &ltstrong&gtError!&lt/strong&gt Sorry We are faild to connect.
+            &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt&lt/button&gt
+          &lt/div&gt'. mysqli_connect_error());
+        }
+       
+    
+        $sql = "INSERT INTO `contactform`( `Name`, `Email`, `Concern`) VALUES ('$name','$email','$conc')";
+        $result = mysqli_query($conn, $sql);
+    
+        // Add a new table to the database
+        if($result){
+          echo '&ltdiv class="alert alert-success alert-dismissible fade show" role="alert"&gt
+          &ltstrong&gtSuccess!&lt/strong&gt Your Form has been Submited successfully.
+          &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt&lt/button&gt
+        &lt/div&gt';
+        }
+        else{
+            echo '&ltdiv class="alert alert-danger alert-dismissible fade show" role="alert"&gt
+            &ltstrong&gtError!&lt/strong&gt We are Sorry Your Form has been not Submited .
+            &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt&lt/button&gt
+          &lt/div&gt';
+        }
+    
+    }
+?&gt
+    
+    &ltdiv class="container mt-5"&gt
+    &lth2 class="text-center"&gtContact&lt/h2&gt
+    &ltform action="/kartikphp/28_FormData_insert_db.php" method="post"&gt
+      &ltdiv class="mb-3"&gt
+        &ltlabel for="name1"  class="form-label"&gtNmae&lt/label&gt
+        &ltinput type="text" name="name" class="form-control" id="name1" &gt
+        
+      &lt/div&gt
+    
+    
+      &ltdiv class="mb-3"&gt
+        &ltlabel for="exampleInputEmail1"  class="form-label"&gtEmail address&lt/label&gt
+        &ltinput type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"&gt
+        &ltdiv id="emailHelp" class="form-text"&gtWe'll never share your email with anyone else.&lt/div&gt
+      &lt/div&gt
+    
+    
+      &ltdiv class="mb-3"&gt
+        &ltlabel for="textaria" class="form-label"&gtDescription&lt/label&gt
+        &lttextarea name="conc" class="form-control" id="textaria" cols="30" rows="10"&gt&lt/textarea&gt
+      &lt/div&gt
+     
+      &ltbutton type="submit" class="btn btn-primary"&gtSubmit&lt/button&gt
+    &lt/form&gt
+    &lt/div&gt
+    
+    
+        &lt!-- Optional JavaScript; choose one of the two! --&gt
+    
+        &lt!-- Option 1: Bootstrap Bundle with Popper --&gt
+        &ltscript src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"&gt&lt/script&gt
+    
+        &lt!-- Option 2: Separate Popper and Bootstrap JS --&gt
+        &lt!--
+        &ltscript src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"&gt&lt/script&gt
+        &ltscript src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"&gt&lt/script&gt
+        --&gt
+      &lt/body&gt
+    &lt/html&gt
+</code></pre>
+            </li>
+
+
+            <li>
+                <h3>Show Data in Display.</h3>
+                <pre class="language-php line-numbers">
+<code>&lt?php 
+
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kartikdb";
+    
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{
+        echo "Connection was successful&ltbr&gt";
+    }
+    
+    $sql = "SELECT * FROM `phptable` ";
+    $result = mysqli_query($conn, $sql);
+    
+    //Find the Numbers of record returned
+    
+    $num = mysqli_num_rows($result);
+    echo $num;
+    echo " Numbers Foud The Database&ltbr&gt";
+    
+    //Display the row return by the sql query 
+    if ($num &gt 0) {
+        // $row = mysqli_fetch_assoc($result);
+        // echo var_dump($row);
+        // echo "&ltbr&gt";
+        // $row = mysqli_fetch_assoc($result);
+        // echo var_dump($row);
+        // echo "&ltbr&gt";
+        // $row = mysqli_fetch_assoc($result);
+        // echo var_dump($row);
+        // echo "&ltbr&gt";
+        // $row = mysqli_fetch_assoc($result);
+        // echo var_dump($row);
+        // echo "&ltbr&gt";
+        // $row = mysqli_fetch_assoc($result);
+        // echo var_dump($row);
+        // echo "&ltbr&gt";
+        // $row = mysqli_fetch_assoc($result);
+        // echo var_dump($row);
+        // echo "&ltbr&gt";
+    
+        
+        //Better way to using While loop
+    
+        while ($row = mysqli_fetch_assoc($result)) {
+            // echo var_dump($row);
+            echo $row['sno'] . " Hello " . $row['Name'] . " Your Gender is " . $row['gender'];
+            echo "&ltbr&gt";
+        }
+    }
+?&gt</code>
+</pre>
+            </li>
+
+
+            <li>
+                <h3>Update Data(Wher Clause).</h3>
+                <pre class="language-php line-numbers">
+<code>&lt?php
+
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kartikdb";
+    
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{
+        echo "Connection was successful&ltbr&gt";
+    }
+    
+    $sql = "SELECT * FROM `phptable` WHERE `gender`='male'";
+    $result = mysqli_query($conn, $sql);
+    
+    //Find the Numbers of record returned
+    
+    $num = mysqli_num_rows($result);
+    echo $num . " Record Foud The Database&ltbr&gt";
+    
+    $no = 1;
+    // Usage of WHERE Clause to fetch data from the database
+    
+    if ($num &gt 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            // echo var_dump($row);
+            echo $no . " Hello " . $row['Name'] . " Your Gender is " . $row['gender'];
+            echo "&ltbr&gt";
+            $no = $no + 1;
+        }
+    }
+    // Usage of WHERE Clause to Update Data
+    
+    $sql = "UPDATE `phptable` SET `Name` = 'niki' WHERE `phptable`.`gender` = 'male' ";
+    $result = mysqli_query($conn, $sql);
+    echo var_dump($result);
+    $aff = mysqli_affected_rows($conn);
+    echo "&ltbr&gtNumber of affected rows: $aff &ltbr&gt";
+    if($result){
+        echo "We updated the record successfully";
+    }
+    else{
+        echo "We could not update the record successfully";
+    }
+?&gt</code>
+</pre>
+            </li>
+
+
+            <li>
+                <h3> Delete Data From Data Table.</h3>
+                <pre class="language-php line-numbers">
+<code>&lt?php
+
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kartikdb";
+    
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{
+        echo "Connection was successful&ltbr&gt";
+    }
+    
+    $sql = "DELETE FROM `phptable` WHERE `gender` = 'male' LIMIT 11 ";
+    $result = mysqli_query($conn, $sql);
+    $aff = mysqli_affected_rows($conn);
+    echo "&ltbr&gtNumber of affected rows: $aff &ltbr&gt";
+    
+    if($result){
+        echo "Data Delete Successfully ";
+    }
+    else {
+        $err = mysqli_error($conn);
+        echo "Data not Delete Successfull--&gt $err";
+    }
+?&gt</code>
+</pre>
+            </li>
+
+
+            <!-- <li> <h3> HTML h6 Tag.</h3>
+                <pre class="language-html">
+<code>&lt;h6&gt;Hadding&lt;/h6&gt;</code>
+</pre>
+            </li>
+
+
+            <li> <h3> HTML h6 Tag.</h3>
+                <pre class="language-html">
+<code>&lt;h6&gt;Hadding&lt;/h6&gt;</code>
+</pre>
+            </li>
+
+
+            <li> <h3> HTML h6 Tag.</h3>
+                <pre class="language-html">
+<code>&lt;h6&gt;Hadding&lt;/h6&gt;</code>
+</pre>
+            </li> -->
+
+        </ol>
+    </div>
+</body>
+
+</html>

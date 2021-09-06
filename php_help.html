@@ -1,0 +1,3 @@
+&lt?php // Connecting to the Database $servername = "localhost"; $username = "root"; $password = ""; $database = "kartikdb"; // Create a connection $conn = mysqli_connect($servername, $username, $password, $database); // Die if connection was not successful
+if (!$conn){ die("Sorry we failed to connect: ". mysqli_connect_error()); } else{ echo "Connection was successful&ltbr&gt"; } $sql = "DELETE FROM `phptable` WHERE `gender` = 'male' LIMIT 11 "; $result = mysqli_query($conn, $sql); $aff = mysqli_affected_rows($conn);
+echo "&ltbr&gtNumber of affected rows: $aff &ltbr&gt"; if($result){ echo "Data Delete Successfully "; } else { $err = mysqli_error($conn); echo "Data not Delete Successfull--&gt $err"; } ?&gt
