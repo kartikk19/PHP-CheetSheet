@@ -561,9 +561,273 @@
             </li>
 
 
-            <!-- <li> <h3> HTML h6 Tag.</h3>
-                <pre class="language-html">
-<code>&lt;h6&gt;Hadding&lt;/h6&gt;</code>
+            <!-- <li> <h3>Crud App PHP</h3>
+                <pre class="language-php line-number">
+<code>&lt?php
+$insert = false;
+$update = false;
+$delete = false;
+// Connecting to the Database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "crudappdb";
+
+// Create a connection
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+// Die if connection was not successful
+if (!$conn){
+    die("Sorry we failed to connect: ". mysqli_connect_error());
+  
+}
+if (isset($_GET['delete'])) {
+    $srn = $_GET['delete'];
+    $delete = true;
+    $sql = "DELETE FROM `crudtable` WHERE `srn` = $srn ";
+    $result = mysqli_query($conn, $sql);
+
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+if (isset($_POST['srnEdit'])) {
+    $srn = $_POST['srnEdit'];
+    $title = $_POST['titleEdit'];
+    $description = $_POST['descriptionEdit'];
+
+    $sql = "UPDATE `crudtable` SET `title` = '$title', `description` = '$description' WHERE `crudtable`.`srn` = $srn";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        // echo "We updated the record successfully";
+        $update = true;
+    }
+    else{
+        echo "We could not update the record successfully";
+    }
+}
+else {
+    
+$title = $_POST['title'];
+$description = $_POST['description'];
+
+$sql = "INSERT INTO `crudtable` (`title`, `description`) VALUES ('$title', '$description')";
+$result = mysqli_query($conn, $sql);
+
+// Add a new table to the database
+if($result)
+$insert = true;            
+}
+
+
+}
+
+?&gt
+&lt!doctype html&gt
+&lthtml lang="en"&gt
+
+&lthead&gt
+    &lt!-- Required meta tags --&gt
+    &ltmeta charset="utf-8"&gt
+    &ltmeta name="viewport" content="width=device-width, initial-scale=1"&gt
+
+    &lt!-- Bootstrap CSS --&gt
+    &ltlink href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"&gt
+    &ltlink rel="stylesheet" href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css"&gt
+    &lttitle&gtPHP CRUD | APP&lt/title&gt
+&lt/head&gt
+
+&ltbody&gt
+    &lt!-- Button trigger modal --&gt
+    &lt!-- &ltbutton type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit"&gt
+        Edit modal
+    &lt/button&gt --&gt
+
+    &lt!-- Modal --&gt
+    &ltdiv class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true"&gt
+        &ltdiv class="modal-dialog"&gt
+            &ltdiv class="modal-content"&gt
+                &ltdiv class="modal-header"&gt
+                    &lth5 class="modal-title" id="editLabel"&gtEdit Note&lt/h5&gt
+                    &ltbutton type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"&gt&lt/button&gt
+                &lt/div&gt
+                &ltform action="" method="POST"&gt
+                    &ltdiv class="modal-body"&gt
+                        &ltinput type="hidden" name="srnEdit" id="srnEdit"&gt
+                        &ltdiv class="mb-3"&gt
+                            &ltlabel for="titleEdit" class="form-label"&gtTitle&lt/label&gt
+                            &ltinput type="text" name="titleEdit" class="form-control" placeholder="Title" id="titleEdit"&gt
+                        &lt/div&gt
+                        &ltdiv class="mb-3"&gt
+                            &ltlabel for="descriptionEdit" class="form-label"&gtDescription&lt/label&gt
+                            &lttextarea class="form-control" placeholder="Description" name="descriptionEdit"
+                                id="descriptionEdit" rows="3"&gt&lt/textarea&gt
+                        &lt/div&gt
+                        &lt!-- &ltbutton type="submit" class="btn btn-primary"&gtUpdate Note&lt/button&gt --&gt
+
+                    &lt/div&gt
+                    &ltdiv class="modal-footer d-block me-auto"&gt
+                        &ltbutton type="submit" class="btn btn-primary"&gtSave changes&lt/button&gt
+                        &ltbutton type="button" class="btn btn-secondary" data-bs-dismiss="modal"&gtClose&lt/button&gt
+                    &lt/div&gt
+                &lt/form&gt
+            &lt/div&gt
+        &lt/div&gt
+    &lt/div&gt
+    &ltnav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt
+        &ltdiv class="container-fluid"&gt
+            &lta class="navbar-brand" href="#"&gtPHP CRUD&lt/a&gt
+            &ltbutton class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"&gt
+                &ltspan class="navbar-toggler-icon"&gt&lt/span&gt
+            &lt/button&gt
+            &ltdiv class="collapse navbar-collapse" id="navbarSupportedContent"&gt
+                &ltul class="navbar-nav me-auto mb-2 mb-lg-0"&gt
+                    &ltli class="nav-item"&gt
+                        &lta class="nav-link active" aria-current="page" href="#"&gtHome&lt/a&gt
+                    &lt/li&gt
+                    &ltli class="nav-item"&gt
+                        &lta class="nav-link" href="#"&gtAbout&lt/a&gt
+                    &lt/li&gt
+                    &ltli class="nav-item"&gt
+                        &lta class="nav-link" href="#"&gtContact&lt/a&gt
+                    &lt/li&gt
+                &lt/ul&gt
+                &ltform class="d-flex"&gt
+                    &ltinput class="form-control me-2" type="search" placeholder="Search" aria-label="Search"&gt
+                    &ltbutton class="btn btn-outline-success" type="submit"&gtSearch&lt/button&gt
+                &lt/form&gt
+            &lt/div&gt
+        &lt/div&gt
+    &lt/nav&gt
+    &lt?php
+        if($insert){                    
+                echo '&ltdiv class="alert alert-success alert-dismissible fade show" role="alert"&gt
+                &ltstrong&gtSuccess!&lt/strong&gt Your Form has been Submited successfully.
+                &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt&lt/button&gt
+            &lt/div&gt';                                   
+        }
+        if($update){                    
+                echo '&ltdiv class="alert alert-success alert-dismissible fade show" role="alert"&gt
+                &ltstrong&gtSuccess!&lt/strong&gt Your Note has been Updated successfully.
+                &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt&lt/button&gt
+            &lt/div&gt';                                   
+        }
+        if($delete){                    
+                echo '&ltdiv class="alert alert-success alert-dismissible fade show" role="alert"&gt
+                &ltstrong&gtSuccess!&lt/strong&gt Your Note has been Deleted successfully.
+                &ltbutton type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt&lt/button&gt
+            &lt/div&gt';                                   
+        }
+        
+    ?&gt
+
+    &ltdiv class="container mt-5"&gt
+        &lth2&gtAdd Note&lt/h2&gt
+        &ltform action="" method="POST"&gt
+            &ltdiv class="mb-3"&gt
+                &ltlabel for="title" class="form-label"&gtTitle&lt/label&gt
+                &ltinput type="text" name="title" class="form-control" placeholder="Title" id="title"&gt
+            &lt/div&gt
+            &ltdiv class="mb-3"&gt
+                &ltlabel for="description" class="form-label"&gtDescription&lt/label&gt
+                &lttextarea class="form-control" placeholder="Description" name="description" id="description"
+                    rows="3"&gt&lt/textarea&gt
+            &lt/div&gt
+            &ltbutton type="submit" class="btn btn-primary"&gtAdd Note&lt/button&gt
+
+        &lt/form&gt
+    &lt/div&gt
+    &ltdiv class="container my-5"&gt
+
+        &lttable class="table" id="myTable"&gt
+            &ltthead&gt
+                &lttr&gt
+                    &ltth scope="col"&gtSrn&lt/th&gt
+                    &ltth scope="col"&gtTitle&lt/th&gt
+                    &ltth scope="col"&gtDescription&lt/th&gt
+                    &ltth scope="col"&gtActions&lt/th&gt
+                &lt/tr&gt
+            &lt/thead&gt
+            &lttbody&gt
+                &lt?php
+            $sql = "SELECT * FROM `crudtable` WHERE 1";
+            $result = mysqli_query($conn, $sql);
+            $srn = 0;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $srn = $srn + 1;
+                echo "    &lttr&gt        
+                &ltth scope='row'&gt $srn &lt/th&gt
+                &lttd&gt" . $row['title'] . "&lt/td&gt
+                &lttd&gt" . $row['description']."&lt/td&gt
+                &lttd&gt&ltbutton class='btn btn-sm btn-primary edit' id=" . $row['srn'] . " data-bs-toggle='modal' data-bs-target='#edit'&gtEdit&lt/button&gt
+                &ltbutton class='btn btn-sm btn-primary delete' id=d" . $row['srn'] . " &gtDelete&lt/button&gt&lt/td&gt
+              &lt/tr&gt";
+               
+            }
+        ?&gt
+
+            &lt/tbody&gt
+        &lt/table&gt
+    &lt/div&gt
+    &lt!-- jquery for datatable  --&gt
+    &ltscript src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"&gt&lt/script&gt
+    &lt!-- Optional JavaScript; choose one of the two! --&gt
+
+    &lt!-- Option 1: Bootstrap Bundle with Popper --&gt
+    &ltscript src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"&gt
+    &lt/script&gt
+
+    &lt!-- data table plug  --&gt
+    &ltscript src="//cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"&gt&lt/script&gt
+    &ltscript&gt
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+    &lt/script&gt
+    &ltscript&gt
+    edits = document.getElementsByClassName('edit');
+    Array.from(edits).forEach((element =&gt {
+        element.addEventListener("click", (e) =&gt {
+            console.log("edit", );
+            tr = e.target.parentNode.parentNode;
+            title = tr.getElementsByTagName("td")[0].innerText;
+            description = tr.getElementsByTagName("td")[1].innerText;
+            console.log(title, description);
+            titleEdit.value = title;
+            srnEdit.value = e.target.id;
+            console.log(e.target.id);
+            descriptionEdit.value = description
+        })
+    }))
+
+
+    deletes = document.getElementsByClassName('delete');
+    Array.from(deletes).forEach((element =&gt {
+        element.addEventListener("click", (e) =&gt {
+            console.log("delete", );
+            srn = e.target.id.substr(1, )
+            if (confirm("Are You Sure You Want To Delete This Note?")) {
+                console.log("yes");
+                window.location = `/kartikphp/php curd/01_curd.php?delete=${srn}`
+            } else {
+                console.log("no");
+
+            }
+        })
+    }))
+    &lt/script&gt
+
+    &lt!-- Option 2: Separate Popper and Bootstrap JS --&gt
+    &lt!--
+    &ltscript src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"&gt&lt/script&gt
+    &ltscript src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"&gt&lt/script&gt
+    --&gt
+&lt/body&gt
+
+&lt/html&gt</code>
 </pre>
             </li>
 
